@@ -13,6 +13,7 @@ class SpyScrollView:UIScrollView, UIGestureRecognizerDelegate {
     var skipPanTop: CGFloat = 0
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         // disable pan gesture in empty inset space
+        guard contentOffset.y >= contentInset.top else { return true }
         return touch.location(in: self).y > skipPanTop - contentOffset.y
     }
     
